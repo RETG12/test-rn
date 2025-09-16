@@ -25,7 +25,7 @@ export const useDocsList = () => {
 export const useLike = () => {
     const queryClient = useQueryClient();
 
-    const { mutate: likeDoc, isPending: isLiking, error: errorLike } = useMutation<any, ApiError, MutationVariables>({
+    const { mutate: likeDoc, error: errorLike } = useMutation<any, ApiError, MutationVariables>({
         mutationFn: ({ id, like }) =>
             axios.patch(`/api/docs/${id}`, { like }),
         onSuccess: () => {
@@ -33,5 +33,5 @@ export const useLike = () => {
         },
     });
 
-    return { likeDoc, isLiking, errorLike };
+    return { likeDoc, errorLike };
 };

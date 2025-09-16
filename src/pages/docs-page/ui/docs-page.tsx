@@ -15,6 +15,10 @@ export const DocsPage = () => {
         if (errorDocs) {
             if (errorDocs.response?.status === 401) {
                 clearToken()
+                Toast.show({
+                    type: 'error',
+                    text1: 'Session expired, please log in again',
+                });
             } else {
                 Toast.show({
                     type: 'error',
