@@ -1,16 +1,18 @@
-import { memo } from 'react';
+import { memo, ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, ActivityIndicator, ViewStyle } from 'react-native';
+import { LoaderIcon } from '../icons/loader-icon';
 
 type Props = {
     style?: ViewStyle,
-    title: String,
+    title: string | ReactNode,
     loading?: boolean,
     onPress: () => void,
     disabled?: boolean,
-    testID?: string
+    testID?: string,
+    type?: boolean,
 }
 
-const ButtonComponent: React.FC<Props> = ({ style, title, loading, onPress, disabled, testID }) => (
+const ButtonComponent: React.FC<Props> = ({ style, title, loading, onPress, disabled, testID, type }) => (
     <Pressable
         testID={testID}
         style={[
@@ -22,7 +24,7 @@ const ButtonComponent: React.FC<Props> = ({ style, title, loading, onPress, disa
         onPress={onPress}
     >
         {loading ? (
-            <ActivityIndicator color="#fff" />
+            type ? <LoaderIcon /> : <ActivityIndicator color="#fff" /> 
         ) : (
             <Text style={styles.sendButtonText}>{title}</Text>
         )}

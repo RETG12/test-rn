@@ -9,12 +9,12 @@ const AuthNavigation = createStaticNavigation(AuthStackPages);
 const MainNavigation = createStaticNavigation(MainStackPages);
 
 export const MainAppNavigation = () => {
-    const { isAuth, loadToken, clearToken } = useUserToken();
+    const { isAuth, loadToken } = useUserToken();
     const [isReady, setIsReady] = useState(true);
 
     useEffect(() => {
         loadToken().finally(() => setIsReady(false));
-    }, [loadToken, clearToken]);
+    }, [loadToken]);
 
     if (isReady) {
         return <LoadingPage />;

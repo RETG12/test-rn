@@ -14,12 +14,12 @@ export const useUserToken = create<Store>((set, get) => ({
     setToken: (token) => {
         Keychain.setGenericPassword('Token', token);
         set({ isAuth: true });
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     },
     clearToken: () => {
         Keychain.resetGenericPassword();
         set({ isAuth: false });
-        axios.defaults.headers.common['Authorization'] = undefined;
+        axios.defaults.headers.common.Authorization = undefined;
     },
     loadToken: () => Keychain.getGenericPassword().then((credentials) => {
         const { setToken } = get();
